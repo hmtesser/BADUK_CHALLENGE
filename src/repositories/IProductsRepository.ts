@@ -1,5 +1,5 @@
 import { Products } from "../entities/Products";
   export interface IProductsRepository { 
-    chkProductId(id:string): Promise<Products>
+    find():Promise<void>
     save(products:Products):Promise<void>
   }

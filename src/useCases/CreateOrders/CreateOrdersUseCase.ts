@@ -11,16 +11,12 @@ export class CreateOrdersUseCase {
   ){}
   
   async execute(data: ICreateOrdersRequestDTO) {
-   const orderAlreadyExists = await this.orderRepository.chkOrdersId(data.id);
+    const orders = new Orders(data)
 
-   if(orderAlreadyExists){
-     throw new Error ('Pedido já registrado no sistema')
-   }
-
-
-   const orders = new Orders(data)
-
-   await this.orderRepository.save(orders);
+    await this.orderRepository.save(orders)
+    
+    return
+  
 
 
   }

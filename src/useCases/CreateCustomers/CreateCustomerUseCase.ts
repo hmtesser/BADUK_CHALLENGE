@@ -12,12 +12,12 @@ export class CreateCustomerUseCase {
   ){}
   
   async execute(data: ICreateCustomerRequestDTO) {
-   
 
+  const customer = new Customer(data)
 
-   const customer = new Customer(data)
+  await this.customerRepository.save(customer);
 
-   await this.customerRepository.save(customer);
+   return 
 
 
   }

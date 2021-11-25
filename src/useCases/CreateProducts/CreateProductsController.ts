@@ -1,31 +1,18 @@
 import { CreateProductsUseCase } from "./CreateProductsUseCase";
 import { Request, Response } from "express"
+import { ProductsRepository } from "../../repositories/implementations/ProductsRepository";
 
 export class CreateProductsController {
-  constructor(
-    private createProductsUseCase: CreateProductsUseCase
-  ){}
-
   async handle(request:Request, response: Response ): Promise<Response>{
 
-    const {id, name, price, quantity } = request.body;
+    const {name, price, quantity } = request.body;
+    //Database insertion
 
-    try {
-      await this.createProductsUseCase.execute({
-        id,
-        name,
-        price,
-        quantity
-      })
-      if((!name&&!price&&!quantity&&!id)){
-        return response.status(400).json({message: "campos incorretos"})
-      }
-      else{
-        return response.status(201).json({ message: "Value has been inserted into the database"}).send()
-      }
-    } catch (err) {
-      return response.status(400).json({message: err.message || 'Erro inesperado '})
+    const repository = new ProductsRepository()
+    const useCase = new CreateProductsUseCase(repository)
+    await useCase.execute({name,price,quantity})
+    return response.json({message: "Product inserted into databank succesfully"})
     }
 
   }
-}
+  

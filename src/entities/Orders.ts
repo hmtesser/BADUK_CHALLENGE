@@ -1,6 +1,7 @@
-import { uuid } from 'uuidv4'
+
 export interface orders{
   id:string;
+  name:string
   quantity:number
 }
 
@@ -10,13 +11,10 @@ export class Orders{
   totalPrice:number;
   //createdAt
   //updatedAt
-  products:Array<orders>
-  constructor(props: Omit<Orders, 'id'>, id?: string) {
+  products:orders
+  constructor(props: Orders) {
+    Object.assign(this,props)
 
-    Object.assign(this, props);
-    if (!id) {
-        this.id = uuid();
-    }
 }
 }
 

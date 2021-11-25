@@ -9,10 +9,6 @@ export class CreateProductsUseCase {
   ){}
 
   async execute(data:ICreateProductsRequestDTO){
-    const productAlreadyExists = await this.productsRepository.chkProductId(data.id)
-    if(productAlreadyExists){
-      throw new Error ('Cliente já cadastrado')
-    }
 
     const products = new Products(data)
 
