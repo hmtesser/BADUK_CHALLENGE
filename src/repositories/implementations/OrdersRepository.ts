@@ -7,6 +7,7 @@ export class OrdersRepository implements IOrdersRepository {
 
   private orders = collections.orders
 
+  // Queries Used for Orders
 
 
   async save(orders: Order){

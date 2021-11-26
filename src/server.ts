@@ -3,6 +3,7 @@ import express from "express"
 import { connectDataBase } from './services/database.service'
 import { router } from "./routes"
 
+//check connection with mongoDB
 connectDataBase().then(() => {
   app.use("/customers",router);
 
