@@ -1,20 +1,29 @@
+import mongoose, { Schema } from "mongoose"
+import { Order } from '../models/Order'
 
-export interface orders{
-  id:string;
-  name:string
-  quantity:number
-}
+const orders = new Schema<Order>({
+  customerId: {
+    type: String,
+    required: true
+  },
+  totalPrice: {
+    type: Number,
+    required: true
+  },
+  products: [{
+    id: {
+      type: String,
+      required: true
+    },
+    quantity: {
+      type: Number,
+      required: true
+    }
+  }],
+},
+  { timestamps: true }
+)
 
-export class Orders{
-  id:string;
-  customerId:string;
-  totalPrice:number;
-  //createdAt
-  //updatedAt
-  products:orders
-  constructor(props: Orders) {
-    Object.assign(this,props)
+const CollectionOrder = mongoose.model("orders",orders)
 
-}
-}
-
+export { CollectionOrder }

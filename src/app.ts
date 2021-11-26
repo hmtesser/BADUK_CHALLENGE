@@ -1,7 +1,9 @@
+import 'express-async-errors'
 import { isCelebrateError } from 'celebrate'
 import express from 'express'
 import { router } from './routes'
 import dotenv from 'dotenv'
+
 
 
 dotenv.config()
@@ -10,7 +12,7 @@ const app = express()
 app.use(express.json())
 app.use(router)
 
-class AppError {
+export class AppError {
   public readonly message: string;
 
   public readonly statusCode: number;
@@ -34,6 +36,7 @@ app.use((err: any, _request: express.Request, response: express.Response, _: exp
       message: queryMessage || bodyMessage,
     });
   }
+  console.log(err.message)
     return response.status(500).json({ status: 'error', message: 'Erro interno do servidor.' })
 
   

@@ -1,5 +1,4 @@
-
-import { Customer } from "../../entities/Customer";
+import { CollectionCustomer } from "../../entities/Customer";
 import { ICustomerRepository } from "../../repositories/ICustomerRepository";
 import { ICreateCustomerRequestDTO } from "./CreateCustomerDTO";
 
@@ -13,7 +12,7 @@ export class CreateCustomerUseCase {
   
   async execute(data: ICreateCustomerRequestDTO) {
 
-  const customer = new Customer(data)
+  const customer = new CollectionCustomer(data)
 
   await this.customerRepository.save(customer);
 

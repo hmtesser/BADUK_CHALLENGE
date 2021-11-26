@@ -1,4 +1,4 @@
-import { Products } from '../../entities/Products'
+import { CollectionProduct } from '../../entities/Products'
 import { IProductsRepository } from '../../repositories/IProductsRepository'
 import { ICreateProductsRequestDTO } from './CreateProductsDTO'
 
@@ -10,7 +10,7 @@ export class CreateProductsUseCase {
 
   async execute(data:ICreateProductsRequestDTO){
 
-    const products = new Products(data)
+    const products = new CollectionProduct(data)
 
     await this.productsRepository.save(products)
 
