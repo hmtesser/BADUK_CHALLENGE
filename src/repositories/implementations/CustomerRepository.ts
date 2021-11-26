@@ -20,9 +20,10 @@ export class CustomerRepository implements ICustomerRepository {
     pageNumber?:number
     itensPerPage?:number
   }){
-    console.log(filters)
 
-    const result = await this.customers.find().skip(filters.pageNumber > 0 ? (( filters.pageNumber -1) * filters.itensPerPage):0).toArray()
+
+
+    const result = await this.customers.find().toArray()
     return result as unknown as Customer[]
   }
 
