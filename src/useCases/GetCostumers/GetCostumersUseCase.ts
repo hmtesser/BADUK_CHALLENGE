@@ -1,4 +1,4 @@
-import { ICustomerRepository } from "../../repositories/ICustomerRepository";
+import { ICustomerRepository } from "../../repositories/ICustomerRepository"
 export class GetCustomersUseCase {
  
   constructor(

@@ -5,7 +5,6 @@ import { GetOrdersUseCase } from './GetOrdersUseCase'
 export class GetOrdersController {
   async handle(request:Request, response:Response):Promise<Response>{
     const filters = request.query
-    console.log(filters);
     const repository = new OrdersRepository()
     const useCase = new GetOrdersUseCase(repository)
     const result = await useCase.execute(filters)

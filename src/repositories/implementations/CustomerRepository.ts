@@ -1,5 +1,5 @@
 
-import { ObjectId } from "mongoose/node_modules/mongodb";
+import { ObjectId } from "mongoose/node_modules/mongodb"
 import { Customer } from "../../models/Customer"
 import { ICustomerRepository } from "../../repositories/ICustomerRepository"
 import { collections } from "../../services/database.service"
@@ -9,10 +9,10 @@ export class CustomerRepository implements ICustomerRepository {
 
   private customers = collections.customers
 
-
+//queries used for Customers
 
   async save(customer: Customer){
-    this.customers.insertOne(customer);
+    this.customers.insertOne(customer)
   }
   async find(filters?: Partial<Customer> & {
     start?:Date | string
