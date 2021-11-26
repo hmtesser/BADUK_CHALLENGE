@@ -1,6 +1,7 @@
 import mongoose,{ Schema } from "mongoose"
 import { Product } from "../models/Product"
 
+//schema for Mongo 
 const products = new Schema<Product>({
    name:{
      type:String,

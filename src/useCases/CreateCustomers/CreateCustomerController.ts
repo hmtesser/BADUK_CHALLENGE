@@ -1,14 +1,13 @@
-import { CreateCustomerUseCase } from "./CreateCustomerUseCase";
+import { CreateCustomerUseCase } from "./CreateCustomerUseCase"
 import { Request, Response } from "express"
-import { CustomerRepository } from "../../repositories/implementations/CustomerRepository";
-
+import { CustomerRepository } from "../../repositories/implementations/CustomerRepository"
 
 export class CreateCustomerController {
 
 
   async handle(request: Request, response: Response): Promise<Response> {
 
-    const { name, email, telefone, updatedAt = new Date(), createdAt = new Date()} = request.body;
+    const { name, email, telefone, updatedAt = new Date(), createdAt = new Date()} = request.body
     //Database insetion
     const repository = new CustomerRepository()
     const useCase = new CreateCustomerUseCase(repository)

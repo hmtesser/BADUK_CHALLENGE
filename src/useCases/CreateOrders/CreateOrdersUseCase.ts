@@ -1,9 +1,9 @@
-import { AppError } from "../../app";
-import  { CollectionOrder } from "../../entities/Orders";
-import { ICustomerRepository } from "../../repositories/ICustomerRepository";
-import { IOrdersRepository } from "../../repositories/IOrdersRepository";
-import { IProductsRepository } from "../../repositories/IProductsRepository";
-import { ICreateOrdersRequestDTO } from "../CreateOrders/CreateOrdersDTO";
+import { AppError } from "../../app"
+import  { CollectionOrder } from "../../entities/Orders"
+import { ICustomerRepository } from "../../repositories/ICustomerRepository"
+import { IOrdersRepository } from "../../repositories/IOrdersRepository"
+import { IProductsRepository } from "../../repositories/IProductsRepository"
+import { ICreateOrdersRequestDTO } from "../CreateOrders/CreateOrdersDTO"
 
 export class CreateOrdersUseCase {
 
