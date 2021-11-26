@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose"
-import { Customer } from "../models/git "
+import { Customer } from "../models/Customer"
 
 const customers = new Schema<Customer>({
  name:{
