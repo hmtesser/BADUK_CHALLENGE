@@ -1,4 +1,5 @@
-import { ObjectId } from "bson";
+
+import { ObjectId } from "mongoose/node_modules/mongodb";
 import { Customer } from "../../models/Customer"
 import { ICustomerRepository } from "../../repositories/ICustomerRepository"
 import { collections } from "../../services/database.service"

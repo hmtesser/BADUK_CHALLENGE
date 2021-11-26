@@ -4,7 +4,7 @@ import { ProductsRepository } from "../../repositories/implementations/ProductsR
 
 export class CreateProductsController {
   async handle(request:Request, response: Response ): Promise<Response>{
-
+    
     const {name, price, quantity } = request.body;
     //Database insertion
 

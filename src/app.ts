@@ -13,9 +13,9 @@ app.use(express.json())
 app.use(router)
 
 export class AppError {
-  public readonly message: string;
+  public readonly message: string
 
-  public readonly statusCode: number;
+  public readonly statusCode: number
 
   constructor (message: string, statusCode = 400) {
     this.message = message
@@ -29,8 +29,8 @@ app.use((err: any, _request: express.Request, response: express.Response, _: exp
   }
 
   if (isCelebrateError(err)) {
-    const queryMessage = err.details.get('query')?.message;
-    const bodyMessage = err.details.get('body')?.message;
+    const queryMessage = err.details.get('query')?.message
+    const bodyMessage = err.details.get('body')?.message
     return response.status(401).json({
       status: 'error',
       message: queryMessage || bodyMessage,

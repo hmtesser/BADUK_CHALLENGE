@@ -3,21 +3,17 @@ import express, {Request, Response,Router } from "express"
 import { createCustomerController } from './useCases/CreateCustomers/'
 import { createOrdersController } from './useCases/CreateOrders/'
 import { createProductsController } from'./useCases/CreateProducts'
-import { GetCustomersController } from "./useCases/GetCostumers/GetCustomersController";
+import { GetCustomersController } from "./useCases/GetCostumers/GetCustomersController"
 import { GetOrdersController } from "./useCases/GetOrders/GetOrdersController"
-import { celebrate, Joi, Segments } from "celebrate";
-import { GetProductsController } from "./useCases/GetProducts/GetProductsController";
-import { object } from "joi";
+import { celebrate, Joi, Segments } from "celebrate"
+import { GetProductsController } from "./useCases/GetProducts/GetProductsController"
 
 
 //Global Config
-const router = Router();
+const router = Router()
 router.use(express.json())
 
-// rotas utilizadass
-
-//Customers
-
+//POST
 router.post('/customers', celebrate({[Segments.BODY]:
   Joi.object().keys({
     name:Joi.string().required(),
@@ -30,7 +26,7 @@ router.post('/customers', celebrate({[Segments.BODY]:
 
 return createCustomerController.handle(req, res)
 });
-// Products 
+
 router.post('/products',celebrate({[Segments.BODY]:
   Joi.object().keys({
     name:Joi.string().required(),
@@ -41,8 +37,6 @@ router.post('/products',celebrate({[Segments.BODY]:
 
 return createProductsController.handle(req, res)
 })
-
-//Orders
 
 router.post('/orders', celebrate({[Segments.BODY]:
   Joi.object().keys({
@@ -55,6 +49,28 @@ router.post('/orders', celebrate({[Segments.BODY]:
 }), (req,res) => {
   return createOrdersController.handle(req,res)
 })
+
+//GET
+
+//Customers
+router.get('/customers', (req, res) => {
+  return new GetCustomersController().handle(req,res)
+})
+
+
+//Products
+router.get('/products',(req,res) => {
+  return new GetProductsController().handle(req,res)
+  })
+
+  //Orders
+  router.get('/orders', (req, res) => {
+    return new GetOrdersController().handle(req,res)
+    
+    })
+
+
+
 
 
 router.get('/customers', (req, res) => {
@@ -69,6 +85,4 @@ router.get('/orders', (req, res) => {
 return new GetOrdersController().handle(req,res)
 
 })
-
-
 export { router }

@@ -20,7 +20,6 @@ export class CreateOrdersUseCase {
     let totalPrice = 0
 
     const findCustomer = await this.customerRepository.findOne(data.customerId)
-    console.log(findCustomer);
     if(!findCustomer){
       throw  new AppError("Customer not registered")
     }
@@ -41,7 +40,6 @@ export class CreateOrdersUseCase {
     for (const product of data.products) {
       const findProduct = await this.productRepository.findOne(product.id)
       const totalPriceResult = findProduct.quantity - product.quantity
-      console.log(totalPriceResult)
       await this.productRepository.update(product.id,{quantity:totalPriceResult})      
     }
 
