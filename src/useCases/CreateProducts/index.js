@@ -1,11 +1,11 @@
 import { CreateProductsController } from './CreateProductsController'
-import { PostgresProductsRepository} from '../../repositories/implementations/PostgresProductsRepository'
+import { ProductsRepository} from '../../repositories/implementations/ProductsRepository'
 import { CreateProductsUseCase, createProductsController} from './CreateProductsUseCase'
 
-const postgresProductsRepository = new PostgresProductsRepository()
+const productsRepository = new ProductsRepository()
 
 const createProductsUseCase = new CreateProductsUseCase(
-  postgresProductsRepository
+  productsRepository
 )
 const createProductsController = new CreateProductsController (createProductsUseCase)
 

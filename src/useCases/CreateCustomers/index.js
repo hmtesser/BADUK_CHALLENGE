@@ -1,12 +1,12 @@
 import { CreateCustomerController } from './CreateCustomerController'
-import { PostgresCustomerRepository } from "../../repositories/implementations/PostgresCustomersRepository"
+import { CustomerRepository } from '../../repositories/implementations/CustomerRepository'
 import { CreateCustomerUseCase, createCustomerController } from './CreateCustomerUseCase'
 
-const postgresCustomersRepository = new PostgresCustomerRepository()
+const customersRepository = new CustomerRepository()
 
 const createCustomerUseCase = new CreateCustomerUseCase (
-  postgresCustomersRepository
-)
+  customersRepository
+  )
 
 const createCustomerController = new CreateCustomerController (createCustomerUseCase)
 

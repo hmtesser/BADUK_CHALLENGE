@@ -1,22 +1,29 @@
-import { uuid } from 'uuidv4'
-export interface orders{
-  id:string;
-  quantity:number
-}
+import mongoose, { Schema } from "mongoose"
+import { Order } from '../models/Order'
 
-export class Orders{
-  id:string;
-  customerId:string;
-  totalPrice:number;
-  //createdAt
-  //updatedAt
-  products:Array<orders>
-  constructor(props: Omit<Orders, 'id'>, id?: string) {
-
-    Object.assign(this, props);
-    if (!id) {
-        this.id = uuid();
+const orders = new Schema<Order>({
+  customerId: {
+    type: String,
+    required: true
+  },
+  totalPrice: {
+    type: Number,
+    required: true
+  },
+  products: [{
+    id: {
+      type: String,
+      required: true
+    },
+    quantity: {
+      type: Number,
+      required: true
     }
-}
-}
+  }],
+},
+  { timestamps: true }
+)
 
+const CollectionOrder = mongoose.model("orders",orders)
+
+export { CollectionOrder }

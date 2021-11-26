@@ -1,5 +1,5 @@
-import { Orders } from "../entities/Orders";
-  export interface IOrdersRepository {
-    chkOrdersId(id:string):Promise<Orders>
-    save(orders:Orders):Promise<void>
+import { Order } from "../models/Order";
+  export interface IOrdersRepository {    
+    save(orders:Order):Promise<void>
+    find():Promise<Order[]>
   }

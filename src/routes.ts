@@ -1,46 +1,88 @@
-import { ObjectId } from "mongodb";
-import { collections } from "./services/database.service";
+
 import express, {Request, Response,Router } from "express"
 import { createCustomerController } from './useCases/CreateCustomers/'
 import { createOrdersController } from './useCases/CreateOrders/'
+import { createProductsController } from'./useCases/CreateProducts'
+import { GetCustomersController } from "./useCases/GetCostumers/GetCustomersController"
+import { GetOrdersController } from "./useCases/GetOrders/GetOrdersController"
+import { celebrate, Joi, Segments } from "celebrate"
+import { GetProductsController } from "./useCases/GetProducts/GetProductsController"
+
 
 //Global Config
-const router = Router();
+const router = Router()
 router.use(express.json())
 
-// rotas utilizadass
+//POST
+router.post('/customers', celebrate({[Segments.BODY]:
+  Joi.object().keys({
+    name:Joi.string().required(),
+    email:Joi.string().email().required(),
+    telefone:Joi.string().regex(/^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\)?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/).rule({
+      message: "Wrong telephone format"
+    }).required()
+  })
+}),  (req, res) => {
 
-//Customers
-
-router.post('/customers', (req, res) => {
-
- //  res.status(200).json({message: "enatrou"})
 return createCustomerController.handle(req, res)
 });
-// Products 
-router.post('/products',(req,res) => {
-  res.status(200).json({message: "entsrou"})
-//  return createProductsController.handle(req, res)
+
+router.post('/products',celebrate({[Segments.BODY]:
+  Joi.object().keys({
+    name:Joi.string().required(),
+    price:Joi.number().required(),
+    quantity:Joi.number().required()    
+  })
+}), (req,res) => {
+
+return createProductsController.handle(req, res)
 })
 
-//Orders
-
-router.post('/orders', (req,res) => {
+router.post('/orders', celebrate({[Segments.BODY]:
+  Joi.object().keys({
+    customerId:Joi.string().required(),
+    products:Joi.array().items(Joi.object().keys({
+      id:Joi.string().required(),
+      quantity:Joi.number().required(),
+    })).required()
+    })
+}), (req,res) => {
   return createOrdersController.handle(req,res)
 })
 
+//GET
+
+//Customers
+router.get('/customers', (req, res) => {
+  return new GetCustomersController().handle(req,res)
+})
+
+
+//Products
+router.get('/products',(req,res) => {
+  return new GetProductsController().handle(req,res)
+  })
+
+  //Orders
+  router.get('/orders', (req, res) => {
+    return new GetOrdersController().handle(req,res)
+    
+    })
+
+
+
+
 
 router.get('/customers', (req, res) => {
-  res.status(200).json({message:'rsrslol'})
+  return new GetCustomersController().handle(req,res)
 })
 
 router.get('/products',(req,res) => {
-  res.status(200).json({message:'rsrslololrs'})
+return new GetProductsController().handle(req,res)
 })
 
 router.get('/orders', (req, res) => {
-  res.status(200).json({message:'swain agora go'})
+return new GetOrdersController().handle(req,res)
+
 })
-
-
 export { router }
