@@ -6,7 +6,8 @@ export class GetCustomersUseCase {
   ){}
 
     async execute(filters?:{}){
-      const result =  await this.customerRepository.find()
+      console.log(filters);
+      const result =  await this.customerRepository.find(filters)
       return result;
     }
 

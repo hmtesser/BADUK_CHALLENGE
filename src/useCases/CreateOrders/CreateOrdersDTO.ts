@@ -5,5 +5,7 @@ export interface ICreateOrdersRequestDTO {
     id:string
     quantity:number
   }[]
+  createdAt:Date
+  updatedAt:Date;
   
 }

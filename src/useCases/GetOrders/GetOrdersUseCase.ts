@@ -6,7 +6,8 @@ export class GetOrdersUseCase {
   ){}
 
   async execute(filters?:{}){
-    const result = await this.orderRepository.find()
+    console.log(filters);
+    const result = await this.orderRepository.find(filters)
       return result
     
   }

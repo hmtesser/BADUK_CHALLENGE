@@ -5,7 +5,5 @@ export type Order = {
     id:string,
     quantity:number
   }[],
-  createdAt?:Date,
-  updatedAt?:Date
 }
 

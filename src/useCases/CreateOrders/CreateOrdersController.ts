@@ -9,16 +9,15 @@ import { CustomerRepository } from "../../repositories/implementations/CustomerR
 export class CreateOrdersController {
 
 
-  async handle(request: Request<null,null,ICreateOrdersRequestDTO>, response: Response): Promise<Response> {
-    const { customerId, products } = request.body
-
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { customerId, products, createdAt = new Date(), updatedAt = new Date() } = request.body
     //Database insertion
 
     const ordersRepository = new OrdersRepository()
     const customerRepository = new CustomerRepository()
     const productRepository = new ProductsRepository()
     const useCase = new CreateOrdersUseCase(ordersRepository,productRepository,customerRepository)
-    await useCase.execute({ customerId, products })
+    await useCase.execute({ customerId, products, createdAt, updatedAt })
     return response.json({ message: "Order inserted into databank succesfully" })
 
   }

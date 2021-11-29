@@ -1,7 +1,7 @@
 import mongoose,{ Schema } from "mongoose"
 import { Product } from "../models/Product"
 
-//schema for Mongo 
+//Products schema
 const products = new Schema<Product>({
    name:{
      type:String,
@@ -14,11 +14,8 @@ const products = new Schema<Product>({
    quantity:{
      type:Number,
      required:true
-   },
-},{
-  timestamps:true
-})
-
+   }
+}, { timestamps: true})
 const CollectionProduct = mongoose.model("products",products)
 
 export { CollectionProduct }

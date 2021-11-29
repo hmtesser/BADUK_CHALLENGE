@@ -34,6 +34,15 @@ A sua API deve ter no minimo as seguinte rotas:
     3. Listar pedidos que tenham determinados produtos.
         1. Você deve receber um array de `id` dos produtos e fazer  uma query para buscar todos os pedidos que possuem esses produtos no seu campo `products`
 
+
+Filtros : "lt" para menores que
+"gt" para maiores que
+"start" para pesquisar a partir da data enviada 
+"end" para pesquisas até a data enviada
+"start" e "end" para procurar entre as datas
+"ordersId" para procurar Orders que contenham os produtos(passado por ID)
+OBS: para perguntar sobre N+1 produtos, utilize && ex: /Orders?ordersId=61a3eb1990cfadef69f7d7fa&ordersId=61a3eb1e90cfadef69f7d7fb
+
 ### Restrições:
 
 - Uso de NodeJS com Typescript e MongoDB.

@@ -6,7 +6,7 @@ export class GetProductsUseCase {
   ){}
 
   async execute(filters?:{}){
-    const result = await this.productsRepository.find()
+    const result = await this.productsRepository.find(filters)
     return result
   }
 

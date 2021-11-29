@@ -19,22 +19,18 @@ export class ProductsRepository implements IProductsRepository {
     itensPerPage?:number
   }){
 
-    // if(!(filters.start&&filters.end)){  
-    //   const newFilters = {createdAt:{$gte:new Date(filters.end),$lt:new Date(filters.start)}}
-    //   const result = await this.products.find(newFilters).toArray()
-    //   return result as unknown as Product[]
-    // }
-    // if((!filters.pageNumber&&filters.itensPerPage)){
-    //   const result = await this.products.find().skip(
-    //     filters.pageNumber > 0 ? (( filters.pageNumber - 1)*filters.itensPerPage): 0).toArray()
-    //   return result as unknown as Product[]
-    // }
+    const obj = {... filters}
 
+
+    if(!filters){
     const result = await this.products.find().toArray()
     return result as unknown as Product[]
 
   }
 
+  const result = await this.products.find(obj).toArray()
+  return result as unknown as Product[]
+}
   async findOne(id:string){
     const result = await this.products.find({_id:new ObjectId(id)}).toArray()
     return result[0] as unknown as Product

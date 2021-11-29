@@ -6,12 +6,12 @@ import { ProductsRepository } from "../../repositories/implementations/ProductsR
 export class CreateProductsController {
   async handle(request:Request, response: Response ): Promise<Response>{
     
-    const {name, price, quantity } = request.body
+    const {name, price, quantity, createdAt = new Date(), updatedAt = new Date() } = request.body
     //Database insertion
 
     const repository = new ProductsRepository()
     const useCase = new CreateProductsUseCase(repository)
-    await useCase.execute({name,price,quantity})
+    await useCase.execute({name,price,quantity, createdAt, updatedAt})
     return response.json({message: "Product inserted into databank succesfully"})
     }
 

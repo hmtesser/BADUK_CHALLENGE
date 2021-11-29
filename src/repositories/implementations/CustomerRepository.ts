@@ -21,10 +21,22 @@ export class CustomerRepository implements ICustomerRepository {
     itensPerPage?:number
   }){
 
-
-
-    const result = await this.customers.find().toArray()
+    console.log('filtros: ',filters)
+    const obj = {
+      ...filters
+    }
+    
+    
+    if (Object.keys(filters).length === 0){
+      const result = await this.customers.find().toArray()
+      return result as unknown as Customer[]
+    }
+   
+    const result = await this.customers.find(obj).toArray()
     return result as unknown as Customer[]
+
+  
+
   }
 
   async findOne(id:string){

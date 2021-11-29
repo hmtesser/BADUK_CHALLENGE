@@ -18,12 +18,11 @@ const orders = new Schema<Order>({
     quantity: {
       type: Number,
       required: true
-    }
+    },
+    _id: false
   }],
 },
-  { timestamps: true }
-)
+  { timestamps: true })
 
-const CollectionOrder = mongoose.model("orders",orders)
-
+const CollectionOrder = mongoose.model("orders", orders)
 export { CollectionOrder }

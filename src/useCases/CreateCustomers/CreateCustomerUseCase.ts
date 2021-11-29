@@ -3,8 +3,7 @@ import { ICustomerRepository } from "../../repositories/ICustomerRepository";
 import { ICreateCustomerRequestDTO } from "./CreateCustomerDTO";
 
 export class CreateCustomerUseCase {
-
-
+  
   constructor(
     private customerRepository: ICustomerRepository
 
